@@ -20,7 +20,7 @@ pipeline {
                     currentBuild.displayName = params.version
                 }
                 bat 'terraform init -input=false'
-                bat 'terraform workspace select "${environment}"'
+                bat 'terraform workspace select %environment%'
                 
                 // sh "terraform plan -input=false -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
                 
