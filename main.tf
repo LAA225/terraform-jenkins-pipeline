@@ -7,16 +7,12 @@ terraform {
   }
 }
 
-variable "version" {
-  type = string
-}
 
 resource "azurerm_resource_group" "rg" {
   name     = "myTFResourceGroup"
   location = "westus2"
   tags = {
         Environment = "testing"
-        version = var.version
         Team = "DevOps"
     }
 }
