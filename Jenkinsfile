@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'environment', defaultValue: 'Azure', description: 'Workspace/environment file to use for deployment')
+        string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
         string(name: 'version', defaultValue: '0.13.0', description: 'Version variable to pass to Terraform')
-        booleanParam(name: 'autoApprove', defaultValue: true, description: 'Automatically run apply after generating plan?')
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     }
     
     environment {
