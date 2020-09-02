@@ -1,6 +1,7 @@
 pipeline {
-    agent docker {image 'hashicorp/terraform:latest'}
-
+    agent {
+        docker {image 'hashicorp/terraform:latest'}
+    }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
         string(name: 'version', defaultValue: '1.0', description: 'Version variable to pass to Terraform')
