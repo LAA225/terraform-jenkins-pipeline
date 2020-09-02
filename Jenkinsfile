@@ -19,13 +19,13 @@ pipeline {
                 script {
                     currentBuild.displayName = params.version
                 }
-                bat 'terraform init -input=false'
-                bat 'terraform workspace select %environment%'
+                sh 'terraform init -input=false'
+                sh 'terraform workspace select ${environment}'
                 
                 // sh "terraform plan -input=false -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
                 
-                bat "terraform plan -input=false -out tfplan"
-                bat 'terraform show -no-color tfplan > tfplan.txt'
+                sh "terraform plan -input=false -out tfplan"
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                bat "terraform apply -input=false tfplan"
+                sh "terraform apply -input=false tfplan"
             }
         }
     }
