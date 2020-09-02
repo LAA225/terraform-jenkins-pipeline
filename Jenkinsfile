@@ -1,8 +1,7 @@
 pipeline {
-    agent {
-        docker{
-            image 'hashicorp/terraform'
-        }
+    agent any
+    tools {
+        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform-0.13.0"
     }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
@@ -11,6 +10,7 @@ pipeline {
     }
     
     environment {
+        TF_TOOL = tool('terraform-0.13.0')
         AWS_ACCESS_KEY_ID     = credentials('AZURE_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AZURE_SECRET_ACCESS_KEY')
         TF_IN_AUTOMATION      = '1'
